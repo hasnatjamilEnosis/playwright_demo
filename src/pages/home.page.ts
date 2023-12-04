@@ -11,7 +11,6 @@ export class HomePage extends PagesCore {
   )
 
   get hamburgerMenu(): Locator {
-    console.log(this._hamburgerMenu)
     return this._hamburgerMenu
   }
 
