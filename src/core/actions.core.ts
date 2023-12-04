@@ -1,14 +1,16 @@
 import { Page } from '@playwright/test'
+import { PagesCore } from './pages.core'
 
 class ActionsCore {
-  private readonly _page: Page
-
-  constructor(page: Page) {
-    this._page = page
+  protected page: PagesCore
+  private _pageInstance: Page
+  constructor(page: PagesCore) {
+    this.page = page
+    this._pageInstance = page.pageInstance
   }
 
-  get page(): Page {
-    return this._page
+  async navigateToSite() {
+    await this._pageInstance.goto('/')
   }
 }
 

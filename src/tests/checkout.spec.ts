@@ -1,15 +1,16 @@
 import { test, expect } from '@playwright/test'
+import { LoginPage } from '../pages/login/login.page'
+import { LoginActions } from '../actions/login/login.action'
+import { HomeActions } from '../actions/home/home.action'
+import loginData from '../data/login/login.data.json'
+import { HomePage } from '../pages/home/home.page'
 
 test.describe('Saucelab validation', () => {
   test.beforeEach(async ({ page }) => {
-    // login action
-    await page.goto('https://www.saucedemo.com')
-    const userNameField = page.locator('#user-name')
-    await userNameField.fill('standard_user')
-    const passwordField = page.locator('#password')
-    await passwordField.fill('secret_sauce')
-    const loginBtn = page.locator('#login-button')
-    await loginBtn.click()
+    const loginPage = new LoginPage(page)
+    const loginActions = new LoginActions(loginPage)
+    await loginActions.navigateToSite()
+    await loginActions.login(loginData.username, loginData.password)
   })
 
   test('validate the shopping cart functionality', async ({ page }) => {
@@ -54,10 +55,8 @@ test.describe('Saucelab validation', () => {
   })
 
   test.afterEach(async ({ page }) => {
-    // logout action
-    const hamburgerMenu = page.locator('#react-burger-menu-btn')
-    await hamburgerMenu.click()
-    const logoutBtn = page.locator('#logout_sidebar_link')
-    await logoutBtn.click()
+    const homePage = new HomePage(page)
+    const homeActions = new HomeActions(homePage)
+    await homeActions.logout()
   })
 })

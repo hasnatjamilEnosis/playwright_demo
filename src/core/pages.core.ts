@@ -1,14 +1,14 @@
 import { Page } from '@playwright/test'
 
 class PagesCore {
-  private readonly _page: Page
+  protected page: Page
 
   constructor(page: Page) {
-    this._page = page
+    this.page = page
   }
 
-  get page(): Page {
-    return this._page
+  get pageInstance(): Page {
+    return this.page
   }
 }
 
