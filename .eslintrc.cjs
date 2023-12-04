@@ -1,13 +1,14 @@
 module.exports = {
-  parser: "@typescript-eslint/parser",
   extends: [
-    "plugin:@typescript-eslint/recommended",
-    "plugin:playwright/recommended",
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:playwright/recommended',
   ],
+  parser: '@typescript-eslint/parser',
+  plugins: ['@typescript-eslint', 'playwright'],
+  root: true,
   parserOptions: {
     ecmaVersion: 2020,
-    sourceType: "module",
+    sourceType: 'module',
   },
-  plugins: ["@typescript-eslint", "playwright"],
-  rules: {},
-};
+}
