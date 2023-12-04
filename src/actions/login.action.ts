@@ -1,5 +1,5 @@
-import { ActionsCore } from '../../core/actions.core'
-import { LoginPage } from '../../pages/login/login.page'
+import { ActionsCore } from '../core/actions.core'
+import { LoginPage } from '../pages/login.page'
 
 export class LoginActions extends ActionsCore {
   private _page: LoginPage

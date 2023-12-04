@@ -1,5 +1,5 @@
 import { Locator } from '@playwright/test'
-import { PagesCore } from '../../core/pages.core'
+import { PagesCore } from '../core/pages.core'
 
 export class LoginPage extends PagesCore {
   private _usernameField = this.page.locator('#user-name')

@@ -1,9 +1,10 @@
 import { test, expect } from '@playwright/test'
-import { LoginPage } from '../pages/login/login.page'
-import { LoginActions } from '../actions/login/login.action'
-import { HomeActions } from '../actions/home/home.action'
+import { LoginPage } from '../pages/login.page'
+import { LoginActions } from '../actions/login.action'
+import { HomeActions } from '../actions/home.action'
 import loginData from '../data/login/login.data.json'
-import { HomePage } from '../pages/home/home.page'
+import checkoutData from '../data/checkout/checkout.data.json'
+import { HomePage } from '../pages/home.page'
 
 test.describe('Saucelab validation', () => {
   test.beforeEach(async ({ page }) => {
@@ -14,28 +15,18 @@ test.describe('Saucelab validation', () => {
   })
 
   test('validate the shopping cart functionality', async ({ page }) => {
-    const productList = await page
-      .locator('.inventory_item_name ')
-      .allTextContents()
-    expect(
-      productList,
-      'Product list contains Sauce Labs Fleece Jacket'
-    ).toContain('Sauce Labs Fleece Jacket')
-    const checkoutItem1AddToCartBtn = page.locator(
-      '#add-to-cart-sauce-labs-fleece-jacket'
+    const homePage = new HomePage(page)
+    const homeActions = new HomeActions(homePage)
+
+    await homeActions.validateItemAvailability(
+      checkoutData.checkoutItemJacketTitle
     )
-    await checkoutItem1AddToCartBtn.click()
-    expect(productList, 'Product list contains Sauce Labs Onesie').toContain(
-      'Sauce Labs Onesie'
+    await homeActions.addItemToCart(checkoutData.checkoutItemJacketTitle)
+    await homeActions.validateItemAvailability(
+      checkoutData.checkoutItemOnesieTitle
     )
-    const checkoutItem2AddToCartBtn = page.locator(
-      '#add-to-cart-sauce-labs-onesie'
-    )
-    await checkoutItem2AddToCartBtn.click()
-    const shoppingCartBadge = page.locator(
-      '#shopping_cart_container > a > span'
-    )
-    await expect(shoppingCartBadge).toHaveText('2')
+    await homeActions.addItemToCart(checkoutData.checkoutItemOnesieTitle)
+    await homeActions.validateShoppingCartBadgeCount('2')
     const shoppingCartBtn = page.locator('#shopping_cart_container > a')
     await shoppingCartBtn.click()
     const cartItemsText = await page
