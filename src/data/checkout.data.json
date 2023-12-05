@@ -1,4 +1,6 @@
 {
-  "checkoutItemJacketTitle": "Sauce Labs Fleece Jacket",
-  "checkoutItemOnesieTitle": "Sauce Labs Onesie"
+  "products": {
+    "checkoutItemJacketTitle": "Sauce Labs Fleece Jacket",
+    "checkoutItemOnesieTitle": "Sauce Labs Onesie"
+  }
 }

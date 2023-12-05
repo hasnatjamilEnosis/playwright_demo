@@ -15,6 +15,10 @@ export class HomeActions extends ActionsCore {
     await this._page.logoutBtn.click()
   }
 
+  async scrollToItem(itemName: string) {
+    await this._page.getAddToCartBtnByProductName(itemName).hover()
+  }
+
   async validateItemAvailability(itemName: string) {
     const itemNames = await this._page.productList.allTextContents()
     expect(itemNames).toContain(itemName)
