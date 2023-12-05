@@ -27,6 +27,7 @@ the architecture for this project can be broken down into 5 different components
 2. open the project in visual studio code
 3. open terminal inside visual studio code(terminal -> new terminal)
 4. type the command: `npm i`
+5. type the command: `npx playwright install`
 
 ### Test Execution:
 

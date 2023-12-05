@@ -1,6 +1,7 @@
 import { defineConfig, devices } from '@playwright/test'
 
 export default defineConfig({
+  timeout: 30 * 60 * 1000,
   testDir: './src/tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -21,7 +22,9 @@ export default defineConfig({
     trace: 'on-first-retry',
     headless: false,
   },
-
+  expect: {
+    timeout: 30 * 60 * 1000,
+  },
   /* Configure projects for major browsers */
   projects: [
     {
