@@ -11,4 +11,7 @@ module.exports = {
     ecmaVersion: 2020,
     sourceType: 'module',
   },
+  rules: {
+    'playwright/expect-expect': 0,
+  },
 }
